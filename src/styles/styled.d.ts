@@ -9,6 +9,8 @@ declare module 'styled-components' {
       textSecondary:string;      
       background: string;
       card: string;
+      divider: string;
+      headerDivider: string;
 
       pink: string;
       purple: string;

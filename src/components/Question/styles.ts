@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { transparentize } from 'polished';
 
 export const Container = styled.div`
-  background: #fefefe;
+  background: ${props => props.theme.colors.card};
   border-radius: 8px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   padding: 24px;
@@ -11,20 +12,21 @@ export const Container = styled.div`
   }
 
   &.highlighted {
-    background: #f4f0ff;
-    border: 1px solid #835afd;
+    background: ${transparentize(0.9, '#835AFD')};
+    border: 1px solid ${props => props.theme.colors.purple};
 
     footer .user-info span {
-      color: #262629;
+      color: ${props => props.theme.colors.textSecondary};
     }
   }
 
   &.answered {
-    background: #dbdbdb;
+    background: ${transparentize(0.9, '#57F279')};
+    border: 1px solid ${props => props.theme.colors.green};
   }
 
   p {
-    color: #29292e;
+    color: ${props => props.theme.colors.text};
   }
 
   @media (max-width: 768px) {
@@ -54,7 +56,7 @@ export const Footer = styled.footer`
     }
 
     span {
-      color: #737380;
+      color: ${props => props.theme.colors.textSecondary};
       font-size: 14px;
     }
   }
@@ -68,20 +70,30 @@ export const Footer = styled.footer`
     &.like-button {
       display: flex;
       align-items: flex-end;
-      color: #737380;
-      gap: 8px;        
+      color: ${props => props.theme.colors.textSecondary};
+      gap: 8px;    
+      
+      svg path {
+        stroke: ${props => props.theme.colors.textSecondary};
+      }
 
       &.liked {
-        color: #835afd;
+        color: ${props => props.theme.colors.purple};
 
         svg path {
-          stroke: #835afd;
+          stroke: ${props => props.theme.colors.purple};
         }
       }
     }
 
     &:hover {
       filter: brightness(0.8);
+    }
+  }
+
+  .admin-functions button svg {
+    path, circle {
+      stroke: ${props => props.theme.colors.textSecondary};
     }
   }
 

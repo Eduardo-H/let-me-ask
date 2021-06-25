@@ -21,13 +21,13 @@ export const FormFooter = styled.div`
 
   > span {
     font-size: 14px;
-    color: #737380;
+    color: ${props => props.theme.colors.textSecondary};
     font-weight: 500;
 
     button {
       background: transparent;
       border: 0;
-      color: #855AFD;
+      color: ${props => props.theme.colors.purple};
       text-decoration: underline;
       font-size: 14px;
       font-weight: 500;

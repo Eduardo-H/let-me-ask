@@ -2,10 +2,10 @@ import { useState, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../../components/Button';
+import { ThemeToggler } from '../../components/ThemeToggler';
 import { database } from '../../services/firebase';
 
 import illustrationImg from '../../assets/images/illustration.svg';
-import logoImg from '../../assets/images/logo.svg';
 import googleIconImg from '../../assets/images/google-icon.svg';
 
 import { 
@@ -18,7 +18,13 @@ import {
 
 import { CreateRoomButton, Separator } from './styles';
 
-export function Home() {
+type HomeProps = {
+  theme: string;
+  logo: string;
+  toggleTheme: () => void;
+}
+
+export function Home({ theme, logo, toggleTheme }: HomeProps) {
   const [roomCode, setRoomCode] = useState('');
 
   const history = useHistory();
@@ -62,7 +68,7 @@ export function Home() {
       
       <Main>
         <Content>
-          <img src={logoImg} alt="Letmeask" />
+          <img src={logo} alt="Letmeask" />
           <CreateRoomButton onClick={handleCreateRoom}>
             <img src={googleIconImg} alt="Logo Google" />
             Crie sua sala com o Google
@@ -79,6 +85,10 @@ export function Home() {
               Entrar na sala
             </Button>
           </Form>
+
+          <div className="theme-toggle">
+            <ThemeToggler theme={theme} toggleTheme={toggleTheme} />
+          </div>
         </Content>
       </Main>
     </Container>

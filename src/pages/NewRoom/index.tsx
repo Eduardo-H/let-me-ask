@@ -5,8 +5,6 @@ import { Button } from '../../components/Button';
 import { database } from '../../services/firebase';
 
 import illustrationImg from '../../assets/images/illustration.svg';
-import logoImg from '../../assets/images/logo.svg';
-
 
 import { 
   Container, 
@@ -15,8 +13,15 @@ import {
   Content,
   Form
 } from '../../styles/home';
+import { ThemeToggler } from '../../components/ThemeToggler';
 
-export function NewRoom() {
+type NewRoomProps = {
+  theme: string;
+  logo: string;
+  toggleTheme: () => void;
+}
+
+export function NewRoom({ theme, logo, toggleTheme }: NewRoomProps) {
   const [newRoom, setNewRoom] = useState('');
   const history = useHistory();
   const { user } = useAuth();
@@ -46,7 +51,7 @@ export function NewRoom() {
       </Hero>
       <Main>
         <Content>
-          <img src={logoImg} alt="Letmeask" />
+          <img src={logo} alt="Letmeask" />
           <h2>Criar uma nova sala</h2>
           
           <Form onSubmit={handleCreateRoom}>
@@ -64,6 +69,10 @@ export function NewRoom() {
           <p>
             Quer entrar em uma sala existente? <Link to="/">Clique aqui</Link>
           </p>
+
+          <div className="theme-toggle">
+            <ThemeToggler theme={theme} toggleTheme={toggleTheme} />
+          </div>
         </Content>
       </Main>
     </Container>

@@ -8,8 +8,6 @@ import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
 import { database } from '../../services/firebase';
 
-import logoImg from '../../assets/images/logo.svg';
-
 import {
   Header,
   Main,
@@ -19,12 +17,19 @@ import {
 } from '../../styles/room';
 
 import { Form, FormFooter } from './styles';
+import { ThemeToggler } from '../../components/ThemeToggler';
 
 type RoomParams = {
   id: string;
 }
 
-export function Room() {
+type RoomProps = {
+  theme: string;
+  logo: string;
+  toggleTheme: () => void;
+}
+
+export function Room({ theme, logo, toggleTheme }: RoomProps) {
   const [newQuestion, setNewQuestion] = useState('');
   
   const params = useParams<RoomParams>();
@@ -72,8 +77,12 @@ export function Room() {
     <div>
       <Header>
         <div className="content">
-          <img src={logoImg} alt="Letmeask" />
-          <RoomCode code={roomId} />
+          <img src={logo} alt="Letmeask" />
+
+          <div>
+            <RoomCode code={roomId} />
+            <ThemeToggler theme={theme} toggleTheme={toggleTheme} />
+          </div>          
         </div>
       </Header>
 

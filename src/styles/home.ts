@@ -9,7 +9,7 @@ export const Container = styled.div`
 export const Hero = styled.div`
   flex: 7;
   
-  background: #835afd;
+  background: ${props => props.theme.colors.purple};
   color: #fff;
 
   display: flex;
@@ -32,7 +32,7 @@ export const Hero = styled.div`
     font-size: 24px;
     line-height: 32px;
     margin-top:16px;
-    color: #f8f8f8;
+    color: #fff;
   }
 
   @media (max-width: 1080px) {
@@ -70,12 +70,16 @@ export const Content = styled.div`
 
   p {
     font-size: 14px;
-    color: #737380;
+    color: ${props => props.theme.colors.textSecondary};
     margin-top: 16px;
 
     a {
-      color: #e559f9;
+      color: ${props => props.theme.colors.pink};
     }
+  }
+
+  .theme-toggle {
+    margin-top: 16px;
   }
 `;
 

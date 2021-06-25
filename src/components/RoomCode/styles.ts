@@ -4,15 +4,16 @@ export const Container = styled.button`
   height: 40px;
   border-radius: 8px;
   overflow: hidden;
+  color: ${props => props.theme.colors.text};
 
-  background: #fff;
-  border: 1px solid #835afd;
+  background: ${props => props.theme.title === 'light' ? '#fff' : '#29292E'};
+  border: 1px solid ${props => props.theme.colors.purple};
   cursor: pointer;
 
   display: flex;
   
   div {
-    background: #835afd;
+    background: ${props => props.theme.colors.purple};
     padding: 0 12px;
     display: flex;
     justify-content: center;
@@ -31,6 +32,12 @@ export const Container = styled.button`
   }
 
   @media (max-width: 768px) {
+    div {
+      img {
+        width: 15px;
+      }
+    }
+
     span {
       display: none;
     }

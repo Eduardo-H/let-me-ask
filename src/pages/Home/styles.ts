@@ -5,7 +5,7 @@ export const CreateRoomButton = styled.button`
   height: 50px;
   border-radius: 8px;
   font-weight: 500;
-  background: #ea4335;
+  background: ${props => props.theme.colors.red};
   color: #fff;
 
   display: flex;
@@ -28,7 +28,7 @@ export const CreateRoomButton = styled.button`
 
 export const Separator = styled.div`
   font-size: 14px;
-  color: #a8a8b3;
+  color: ${props => props.theme.colors.divider};
 
   margin: 32px 0;
   display: flex;
@@ -38,7 +38,7 @@ export const Separator = styled.div`
     content: '';
     flex: 1;
     height: 1px;
-    background: #a8a8b3;
+    background: ${props => props.theme.colors.divider};
     margin-right: 16px;
   }
 
@@ -46,7 +46,7 @@ export const Separator = styled.div`
     content: '';
     flex: 1;
     height: 1px;
-    background: #a8a8b3;
+    background: ${props => props.theme.colors.divider};
     margin-left: 16px;
   }
 `;

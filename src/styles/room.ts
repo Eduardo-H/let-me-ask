@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Header = styled.div`
   padding: 24px;
-  border-bottom: 1px solid #e2e2e2;
+  border-bottom: 1px solid ${props => props.theme.colors.headerDivider};
 
   .content {
     max-width: 1120px;
@@ -18,6 +18,7 @@ export const Header = styled.div`
     > div {
       display: flex;
       gap: 16px;
+      align-items: center;
 
       button {
         height: 40px;
@@ -27,7 +28,11 @@ export const Header = styled.div`
 
   @media (max-width: 768px) {
     .content {
-      gap: 30px;
+      gap: 10px;
+
+      > div {
+        gap: 6px;
+      }
     }
   }
 `;
@@ -49,12 +54,12 @@ export const RoomTitle = styled.div`
   h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 24px;
-    color: #29292e;
+    color: ${props => props.theme.colors.text};
   }
 
   span {
     margin-left: 26px;
-    background: #e559f9;
+    background: ${props => props.theme.colors.pink};
     border-radius: 9999px;
     padding: 8px 16px;
     color: #FFF;
@@ -86,7 +91,7 @@ export const UserInfo = styled.div`
 
   span {
     margin-left: 8px;
-    color: #29292e;
+    color: ${props => props.theme.colors.text};
     font-weight: 500;
     font-size: 14px;
   }
