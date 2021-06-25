@@ -34,6 +34,10 @@ export const Hero = styled.div`
     margin-top:16px;
     color: #f8f8f8;
   }
+
+  @media (max-width: 1080px) {
+    display: none;
+  }
 `;
 
 export const Main = styled.main`

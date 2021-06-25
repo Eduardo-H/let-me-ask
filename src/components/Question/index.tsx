@@ -39,7 +39,7 @@ export function Question({
           <span>{ author.name }</span>
         </div>
 
-        <div>{ children }</div>
+        <div className="admin-functions">{ children }</div>
       </Footer>
     </Container>
   );

@@ -26,6 +26,10 @@ export const Container = styled.div`
   p {
     color: #29292e;
   }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const Footer = styled.footer`
@@ -50,7 +54,6 @@ export const Footer = styled.footer`
     }
 
     span {
-      margin-left: 8px;
       color: #737380;
       font-size: 14px;
     }
@@ -79,6 +82,25 @@ export const Footer = styled.footer`
 
     &:hover {
       filter: brightness(0.8);
+    }
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+
+    > div {
+      gap: 10px;
+    }
+
+    .user-info img {
+      width: 28px;
+      height: 28px;
+    }
+
+    button svg,
+    .admin-functions button img {
+      width: 20px;
+      height: 20px;
     }
   }
 `;

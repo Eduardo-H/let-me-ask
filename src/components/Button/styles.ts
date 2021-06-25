@@ -35,4 +35,10 @@ export const Container = styled.button`
     opacity: 0.6;
     cursor: not-allowed;
   }
+
+  @media (max-width: 768px) {
+    height: 40px;
+    padding: 0 22px;
+    font-size: 14px;
+  }
 `
