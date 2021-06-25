@@ -1,17 +1,22 @@
 import { useHistory, useParams } from 'react-router-dom'
 
-import { useRoom } from '../hooks/useRoom';
-import { Button } from '../components/Button';
-import { RoomCode } from '../components/RoomCode';
-import { Question } from '../components/Question';
-import { database } from '../services/firebase';
+import { useRoom } from '../../hooks/useRoom';
+import { Button } from '../../components/Button';
+import { RoomCode } from '../../components/RoomCode';
+import { Question } from '../../components/Question';
+import { database } from '../../services/firebase';
 
-import logoImg from '../assets/images/logo.svg';
-import deleteImg from '../assets/images/delete.svg';
-import checkImg from '../assets/images/check.svg';
-import answerImg from '../assets/images/answer.svg';
+import logoImg from '../../assets/images/logo.svg';
+import deleteImg from '../../assets/images/delete.svg';
+import checkImg from '../../assets/images/check.svg';
+import answerImg from '../../assets/images/answer.svg';
 
-import '../styles/room.scss';
+import {
+  Header,
+  Main,
+  RoomTitle,
+  QuestionList
+} from '../../styles/room';
 
 type RoomParams = {
   id: string;
@@ -51,24 +56,29 @@ export function AdminRoom() {
   }
 
   return (
-    <div id="page-room">
-      <header>
+    <div>
+      <Header>
         <div className="content">
           <img src={logoImg} alt="Letmeask" />
           <div>
             <RoomCode code={roomId} />
-            <Button onClick={handleEndRoom} isOutlined>Encerrar sala</Button>
+            <Button 
+              onClick={handleEndRoom} 
+              isOutlined
+            >
+              Encerrar sala
+            </Button>
           </div>
         </div>
-      </header>
+      </Header>
 
-      <main>
-        <div className="room-title">
+      <Main>
+        <RoomTitle>
           <h1>Sala {title}</h1>
           { questions.length > 0 && <span>{questions.length} pergunta(s)</span> }
-        </div>
+        </RoomTitle>
 
-        <div className="question-list">
+        <QuestionList>
           {
             questions.map(question => (
               <Question 
@@ -105,8 +115,8 @@ export function AdminRoom() {
               </Question>
             ))
           }
-        </div>
-      </main>
+        </QuestionList>
+      </Main>
     </div>
   );
 }

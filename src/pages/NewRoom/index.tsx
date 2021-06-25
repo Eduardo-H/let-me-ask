@@ -1,13 +1,20 @@
 import { FormEvent, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useAuth } from '../hooks/useAuth';
-import { Button } from '../components/Button';
-import { database } from '../services/firebase';
+import { useAuth } from '../../hooks/useAuth';
+import { Button } from '../../components/Button';
+import { database } from '../../services/firebase';
 
-import illustrationImg from '../assets/images/illustration.svg';
-import logoImg from '../assets/images/logo.svg';
+import illustrationImg from '../../assets/images/illustration.svg';
+import logoImg from '../../assets/images/logo.svg';
 
-import '../styles/auth.scss';
+
+import { 
+  Container, 
+  Hero, 
+  Main, 
+  Content,
+  Form
+} from '../../styles/home';
 
 export function NewRoom() {
   const [newRoom, setNewRoom] = useState('');
@@ -31,18 +38,18 @@ export function NewRoom() {
   }
 
   return (
-    <div id="page-auth">
-      <aside>
+    <Container>
+      <Hero>
         <img src={illustrationImg} alt="Ilustração simbolizando perguntas e repostas" />
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
-      </aside>
-      <main>
-        <div className="main-content">
+      </Hero>
+      <Main>
+        <Content>
           <img src={logoImg} alt="Letmeask" />
           <h2>Criar uma nova sala</h2>
           
-          <form onSubmit={handleCreateRoom}>
+          <Form onSubmit={handleCreateRoom}>
             <input
               type="text"
               placeholder="Nome da sala"
@@ -52,13 +59,13 @@ export function NewRoom() {
             <Button type="submit">
               Criar sala
             </Button>
-          </form>
+          </Form>
 
           <p>
             Quer entrar em uma sala existente? <Link to="/">Clique aqui</Link>
           </p>
-        </div>
-      </main>
-    </div>
+        </Content>
+      </Main>
+    </Container>
   ); 
 }

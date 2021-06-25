@@ -1,15 +1,24 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom'
 
-import { Button } from '../components/Button';
-import { RoomCode } from '../components/RoomCode';
-import { Question } from '../components/Question';
-import { useAuth } from '../hooks/useAuth';
-import { database } from '../services/firebase';
+import { useRoom } from '../../hooks/useRoom';
+import { useAuth } from '../../hooks/useAuth';
+import { Button } from '../../components/Button';
+import { RoomCode } from '../../components/RoomCode';
+import { Question } from '../../components/Question';
+import { database } from '../../services/firebase';
 
-import logoImg from '../assets/images/logo.svg';
-import '../styles/room.scss';
-import { useRoom } from '../hooks/useRoom';
+import logoImg from '../../assets/images/logo.svg';
+
+import {
+  Header,
+  Main,
+  RoomTitle,
+  QuestionList,
+  UserInfo
+} from '../../styles/room';
+
+import { Form, FormFooter } from './styles';
 
 type RoomParams = {
   id: string;
@@ -60,34 +69,34 @@ export function Room() {
   }
 
   return (
-    <div id="page-room">
-      <header>
+    <div>
+      <Header>
         <div className="content">
           <img src={logoImg} alt="Letmeask" />
           <RoomCode code={roomId} />
         </div>
-      </header>
+      </Header>
 
-      <main>
-        <div className="room-title">
+      <Main>
+        <RoomTitle>
           <h1>Sala {title}</h1>
           { questions.length > 0 && <span>{questions.length} pergunta(s)</span> }
-        </div>
+        </RoomTitle>
 
-        <form onSubmit={handleSendQuestion}>
+        <Form onSubmit={handleSendQuestion}>
           <textarea 
             placeholder="O que você quer perguntar?"
             onChange={event => setNewQuestion(event.target.value)}
             value={newQuestion}
           />
 
-          <div className="form-footer">
+          <FormFooter>
             {
               user ? (
-                <div className="user-info">
+                <UserInfo>
                   <img src={user.avatar} alt={user.name} />
                   <span>{user.name}</span>
-                </div>
+                </UserInfo>
               ) : (
                 <span>
                   Para enviar uma pergunta, <button>faça seu login.</button>
@@ -100,10 +109,10 @@ export function Room() {
             >
               Enviar pergunta
             </Button>
-          </div>
-        </form>
+          </FormFooter>
+        </Form>
 
-        <div className="question-list">
+        <QuestionList>
           {
             questions.map(question => (
               <Question 
@@ -131,8 +140,8 @@ export function Room() {
               </Question>
             ))
           }
-        </div>
-      </main>
+        </QuestionList>
+      </Main>
     </div>
   );
 }
