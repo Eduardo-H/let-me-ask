@@ -15,7 +15,7 @@ type FirebaseQuestions = Record<string, {
   }>
 }>
 
-type QuestionProps = {
+export type QuestionProps = {
   id: string;
   author: {
     name: string;

@@ -1,11 +1,12 @@
 import { FormEvent, useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 import { useRoom } from '../../hooks/useRoom';
 import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
+import { ThemeToggler } from '../../components/ThemeToggler';
 import { database } from '../../services/firebase';
 
 import {
@@ -17,7 +18,6 @@ import {
 } from '../../styles/room';
 
 import { Form, FormFooter } from './styles';
-import { ThemeToggler } from '../../components/ThemeToggler';
 
 type RoomParams = {
   id: string;
@@ -35,7 +35,9 @@ export function Room({ theme, logo, toggleTheme }: RoomProps) {
   const params = useParams<RoomParams>();
   const roomId = params.id;
 
-  const { user } = useAuth();
+  const history = useHistory();
+
+  const { user, signWithGoogle } = useAuth();
   const { title, questions } = useRoom(roomId);
 
   async function handleSendQuestion(event: FormEvent) {
@@ -73,11 +75,25 @@ export function Room({ theme, logo, toggleTheme }: RoomProps) {
     }
   }
 
+  async function handleSignInWithGoogle() {
+    await signWithGoogle();
+  }
+
+  function handleGoToHome() {
+    history.push('/');
+  }
+
   return (
     <div>
       <Header>
         <div className="content">
-          <img src={logo} alt="Letmeask" />
+          <button 
+            type="button" 
+            onClick={handleGoToHome}
+            className="logo-button"
+          >
+            <img src={logo} alt="Letmeask" />
+          </button>
 
           <div>
             <RoomCode code={roomId} />
@@ -108,7 +124,12 @@ export function Room({ theme, logo, toggleTheme }: RoomProps) {
                 </UserInfo>
               ) : (
                 <span>
-                  Para enviar uma pergunta, <button>faça seu login.</button>
+                  Para enviar uma pergunta, 
+                  <button 
+                    onClick={handleSignInWithGoogle}
+                  >
+                    faça seu login.
+                  </button>
                 </span>
               )
             }

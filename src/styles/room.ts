@@ -26,6 +26,17 @@ export const Header = styled.div`
     }
   }
 
+  .logo-button {
+    height: 40px;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+
+    img {
+      height: 40px;
+    }
+  }
+
   @media (max-width: 768px) {
     .content {
       gap: 10px;
@@ -94,6 +105,15 @@ export const UserInfo = styled.div`
     color: ${props => props.theme.colors.text};
     font-weight: 500;
     font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 500px) {
+    span {
+      max-width: 125px;
+    }
   }
 `;
 
