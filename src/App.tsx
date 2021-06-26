@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { AuthProvider } from './hooks/useAuth';
 import { AdminRoom } from './pages/AdminRoom';
+import { ToastContainer } from 'react-toastify';
 
 import { Home } from './pages/Home';
 import { NewRoom } from './pages/NewRoom';
@@ -16,6 +17,7 @@ import darkLogoImg from './assets/images/dark_logo.svg';
 import light from './styles/themes/light';
 import dark from './styles/themes/dark';
 
+import 'react-toastify/dist/ReactToastify.css';
 import { GlobalStyles } from './styles/global';
 
 function App() {
@@ -67,6 +69,17 @@ function App() {
               component={() => <AdminRoom theme={theme.title} toggleTheme={toggleTheme} logo={logo} />}
             />
           </Switch>
+          <ToastContainer
+            position="top-right"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </BrowserRouter>
       </ThemeProvider>
     </AuthProvider>

@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../../components/Button';
 import { database } from '../../services/firebase';
+import { toast } from 'react-toastify';
 
 import illustrationImg from '../../assets/images/illustration.svg';
 
@@ -39,6 +40,7 @@ export function NewRoom({ theme, logo, toggleTheme }: NewRoomProps) {
       authorId: user?.id
     });
 
+    toast.success('Sala criada com sucesso.');
     history.push(`/admin/rooms/${firebaseRoom.key}`);
   }
 

@@ -4,6 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../../components/Button';
 import { ThemeToggler } from '../../components/ThemeToggler';
 import { database } from '../../services/firebase';
+import { toast } from 'react-toastify';
 
 import illustrationImg from '../../assets/images/illustration.svg';
 import googleIconImg from '../../assets/images/google-icon.svg';
@@ -46,12 +47,12 @@ export function Home({ theme, logo, toggleTheme }: HomeProps) {
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
     if (!roomRef.exists()) {
-      alert('Room does not exists');
+      toast.error('Esta sala não existe.');
       return;
     }
 
     if (roomRef.val().endedAt) {
-      alert('This room was closed');
+      toast.error('Esta sala já foi fechada.');
       return;
     }
 

@@ -1,6 +1,7 @@
 import { useHistory, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
-import { useRoom } from '../../hooks/useRoom';
+import { QuestionProps, useRoom } from '../../hooks/useRoom';
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
@@ -39,6 +40,7 @@ export function AdminRoom({ theme, logo, toggleTheme }: AdminRoomProps) {
       endedAt: new Date()
     });
 
+    toast.success('Sala fechada com sucesso.');
     history.push('/');
   }
 
@@ -46,11 +48,13 @@ export function AdminRoom({ theme, logo, toggleTheme }: AdminRoomProps) {
     await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
       isAnswered: true
     });
+
+    toast.success('Pergunta salva como respondida.');
   }
 
-  async function handleHighlightQuestion(questionId: string) {
-    await database.ref(`rooms/${roomId}/questions/${questionId}`).update({
-      isHighlighted: true
+  async function handleToggleHighlightQuestion(question: QuestionProps) {
+    await database.ref(`rooms/${roomId}/questions/${question.id}`).update({
+      isHighlighted: !question.isHighlighted
     });
   }
 
@@ -58,6 +62,8 @@ export function AdminRoom({ theme, logo, toggleTheme }: AdminRoomProps) {
     if (window.confirm('Tem certeza que você deseja excluir essa pergunta?')) {
       await database.ref(`rooms/${roomId}/questions/${questionId}`).remove();
     }
+
+    toast.success('Pergunta deletada com sucesso.');
   }
 
   return (
@@ -110,7 +116,7 @@ export function AdminRoom({ theme, logo, toggleTheme }: AdminRoomProps) {
                           </button>
                           <button
                             type="button"
-                            onClick={() => handleHighlightQuestion(question.id)}
+                            onClick={() => handleToggleHighlightQuestion(question)}
                           >
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path fillRule="evenodd" clipRule="evenodd" d="M12 17.9999H18C19.657 17.9999 21 16.6569 21 14.9999V6.99988C21 5.34288 19.657 3.99988 18 3.99988H6C4.343 3.99988 3 5.34288 3 6.99988V14.9999C3 16.6569 4.343 17.9999 6 17.9999H7.5V20.9999L12 17.9999Z" stroke="#737380" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
