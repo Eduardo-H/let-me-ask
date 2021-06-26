@@ -78,6 +78,14 @@ export const RoomTitle = styled.div`
     font-size: 14px;
   }
 
+
+  .empty-questions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+  }
+
   @media (max-width: 768px) {
     h1 {
       font-size: 18px;
@@ -119,4 +127,24 @@ export const UserInfo = styled.div`
 
 export const QuestionList = styled.div`
   margin-top: 32px;
+`;
+
+export const EmptyQuestions = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 32px;
+
+  h3 {
+    font-weight: 500;
+    margin-top: 20px;
+  }
+
+  p {
+    max-width: 400px;
+    margin-top: 8px;
+    text-align: center;
+  }
 `;
