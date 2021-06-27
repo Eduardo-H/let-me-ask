@@ -41,7 +41,7 @@ export function Room({ theme, logo, toggleTheme }: RoomProps) {
   const history = useHistory();
 
   const { user, signWithGoogle } = useAuth();
-  const { title, questions } = useRoom(roomId);
+  const { title, questions, authorId } = useRoom(roomId);
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
@@ -86,6 +86,10 @@ export function Room({ theme, logo, toggleTheme }: RoomProps) {
     history.push('/');
   }
 
+  function handleGoToAdminMode() {
+    history.push(`/admin/rooms/${roomId}`)
+  }
+
   return (
     <div>
       <Header>
@@ -109,6 +113,17 @@ export function Room({ theme, logo, toggleTheme }: RoomProps) {
         <RoomTitle>
           <h1>Sala {title}</h1>
           { questions.length > 0 && <span>{questions.length} pergunta(s)</span> }
+
+          {
+            user?.id === authorId && (
+              <Button 
+                onClick={handleGoToAdminMode}
+                className="mode-button"
+              >
+                Modo admin
+              </Button>
+            )
+          }
         </RoomTitle>
 
         <Form onSubmit={handleSendQuestion}>

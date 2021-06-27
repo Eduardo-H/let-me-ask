@@ -5,6 +5,7 @@ import { QuestionProps, useRoom } from '../../hooks/useRoom';
 import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
+import { ThemeToggler } from '../../components/ThemeToggler';
 import { database } from '../../services/firebase';
 
 import emptyQuestionsImg from '../../assets/images/empty-questions.svg';
@@ -16,7 +17,6 @@ import {
   QuestionList,
   EmptyQuestions
 } from '../../styles/room';
-import { ThemeToggler } from '../../components/ThemeToggler';
 
 type RoomParams = {
   id: string;
@@ -66,11 +66,26 @@ export function AdminRoom({ theme, logo, toggleTheme }: AdminRoomProps) {
     toast.success('Pergunta deletada com sucesso.');
   }
 
+  function handleGoToHome() {
+    history.push('/');
+  }
+
+  function handleGoToAskMode() {
+    history.push(`/rooms/${roomId}`);
+  }
+
   return (
     <div>
       <Header>
         <div className="content">
-          <img src={logo} alt="Letmeask" />
+          <button
+            type="button" 
+            onClick={handleGoToHome}
+            className="logo-button"
+          >
+            <img src={logo} alt="Letmeask" />
+          </button>
+          
           <div>
             <RoomCode code={roomId} />
             <Button 
@@ -88,6 +103,13 @@ export function AdminRoom({ theme, logo, toggleTheme }: AdminRoomProps) {
         <RoomTitle>
           <h1>Sala {title}</h1>
           { questions.length > 0 && <span>{questions.length} pergunta(s)</span> }
+
+          <Button 
+            onClick={handleGoToAskMode}
+            className="mode-button"
+          >
+            Modo pergunta
+          </Button>
         </RoomTitle>
 
         {

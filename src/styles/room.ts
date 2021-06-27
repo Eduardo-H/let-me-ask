@@ -78,6 +78,12 @@ export const RoomTitle = styled.div`
     font-size: 14px;
   }
 
+  .mode-button {
+    height: 40px;
+    padding: 0 18px;
+    font-size: 14px;
+    margin-left: auto;
+  }
 
   .empty-questions {
     display: flex;
@@ -93,6 +99,12 @@ export const RoomTitle = styled.div`
 
     span {
       margin-left: 12px;
+      font-size: 12px;
+    }
+
+    .mode-button {
+      height: 30px;
+      padding: 0 14px;
       font-size: 12px;
     }
   }
