@@ -3,10 +3,10 @@
 </h1>
 
 <p align="center">
-  <a href="#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-usage">Usage</a>
+  <a href="#technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#usage">Usage</a>
 </p>
 
 <h1 align="center">
@@ -20,10 +20,10 @@ This project used the following technologies:
 - [TypeScript](https://www.typescriptlang.org/)
 - [Firebase](https://firebase.google.com/?hl=)
 - [Styled Components](https://styled-components.com/)
-- [React Toastfy](https://fkhadra.github.io/react-toastify/introduction)
+- [React Toastify](https://fkhadra.github.io/react-toastify/introduction)
 
 ## Project
-Let me ask it's an app that connects curious people with people who have answers. The project was built during the [Next Level Week](https://rocketseat.com.br/) event.
+Let me ask it's an app connects curious people to people who have answers. The project was built during the [Next Level Week](https://rocketseat.com.br/) event.
 
 ## Layout
 Here are some screenshots of the project
