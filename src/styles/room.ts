@@ -172,3 +172,30 @@ export const EmptyQuestions = styled.div`
     text-align: center;
   }
 `;
+
+export const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  
+  margin-top: 30px;
+
+  svg {
+    width: 40px;
+    height: 40px;
+    
+    animation: spin 1s infinite linear;
+  }
+
+  @keyframes spin {
+    from {
+      transform:rotate(0deg);
+    }
+    to {
+      transform:rotate(360deg);
+    }
+  }
+
+`;

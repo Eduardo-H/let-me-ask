@@ -7,6 +7,7 @@ import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
 import { ThemeToggler } from '../../components/ThemeToggler';
 import { database } from '../../services/firebase';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 import emptyQuestionsImg from '../../assets/images/empty-questions.svg';
 
@@ -15,7 +16,8 @@ import {
   Main,
   RoomTitle,
   QuestionList,
-  EmptyQuestions
+  EmptyQuestions,
+  Loading
 } from '../../styles/room';
 
 type RoomParams = {
@@ -33,7 +35,7 @@ export function AdminRoom({ theme, logo, toggleTheme }: AdminRoomProps) {
   const roomId = params.id;
   const history = useHistory()
 
-  const { title, questions } = useRoom(roomId);
+  const { title, questions, isLoading } = useRoom(roomId);
 
   async function handleEndRoom() {
     await database.ref(`rooms/${roomId}`).update({
@@ -116,7 +118,14 @@ export function AdminRoom({ theme, logo, toggleTheme }: AdminRoomProps) {
         </RoomTitle>
 
         {
-          questions.length > 0 ? (
+          isLoading
+          ? (
+            <Loading>
+              <AiOutlineLoading3Quarters />
+              <p>Carregando...</p>
+            </Loading>
+          )
+          : questions.length > 0 ? (
             <QuestionList>
               {
                 questions.map(question => (

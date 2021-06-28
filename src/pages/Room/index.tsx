@@ -8,6 +8,7 @@ import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
 import { ThemeToggler } from '../../components/ThemeToggler';
 import { database } from '../../services/firebase';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 import emptyQuestionsImg from '../../assets/images/empty-questions.svg';
 
@@ -17,7 +18,8 @@ import {
   RoomTitle,
   QuestionList,
   UserInfo,
-  EmptyQuestions
+  EmptyQuestions,
+  Loading
 } from '../../styles/room';
 
 import { Form, FormFooter } from './styles';
@@ -41,7 +43,7 @@ export function Room({ theme, logo, toggleTheme }: RoomProps) {
   const history = useHistory();
 
   const { user, signWithGoogle } = useAuth();
-  const { title, questions, authorId } = useRoom(roomId);
+  const { title, questions, authorId, isLoading } = useRoom(roomId);
 
   async function handleSendQuestion(event: FormEvent) {
     event.preventDefault();
@@ -164,7 +166,14 @@ export function Room({ theme, logo, toggleTheme }: RoomProps) {
         </Form>
 
         {
-          questions.length > 0 ? (
+          isLoading 
+          ? (
+            <Loading>
+              <AiOutlineLoading3Quarters />
+              <p>Carregando...</p>
+            </Loading>
+          )
+          : questions.length > 0 ? (
             <QuestionList>
               {
                 questions.map(question => (
