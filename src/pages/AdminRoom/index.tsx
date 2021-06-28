@@ -102,14 +102,17 @@ export function AdminRoom({ theme, logo, toggleTheme }: AdminRoomProps) {
       <Main>
         <RoomTitle>
           <h1>Sala {title}</h1>
-          { questions.length > 0 && <span>{questions.length} pergunta(s)</span> }
 
-          <Button 
-            onClick={handleGoToAskMode}
-            className="mode-button"
-          >
-            Modo pergunta
-          </Button>
+          <div>
+            { questions.length > 0 && <span>{questions.length} pergunta(s)</span> }
+
+            <Button 
+              onClick={handleGoToAskMode}
+              className="mode-button"
+            >
+              Modo pergunta
+            </Button>
+          </div>
         </RoomTitle>
 
         {

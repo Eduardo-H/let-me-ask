@@ -112,18 +112,21 @@ export function Room({ theme, logo, toggleTheme }: RoomProps) {
       <Main>
         <RoomTitle>
           <h1>Sala {title}</h1>
-          { questions.length > 0 && <span>{questions.length} pergunta(s)</span> }
+          
+          <div>
+            { questions.length > 0 && <span>{questions.length} pergunta(s)</span> }
 
-          {
-            user?.id === authorId && (
-              <Button 
-                onClick={handleGoToAdminMode}
-                className="mode-button"
-              >
-                Modo admin
-              </Button>
-            )
-          }
+            {
+              user?.id === authorId && (
+                <Button 
+                  onClick={handleGoToAdminMode}
+                  className="mode-button"
+                >
+                  Modo admin
+                </Button>
+              )
+            }
+          </div>
         </RoomTitle>
 
         <Form onSubmit={handleSendQuestion}>

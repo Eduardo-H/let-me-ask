@@ -60,6 +60,7 @@ export const Main = styled.main`
 export const RoomTitle = styled.div`
   margin: 32px 0 24px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
   h1 {
@@ -68,21 +69,26 @@ export const RoomTitle = styled.div`
     color: ${props => props.theme.colors.text};
   }
 
-  span {
-    margin-left: 26px;
-    background: ${props => props.theme.colors.pink};
-    border-radius: 9999px;
-    padding: 8px 16px;
-    color: #FFF;
-    font-weight: 500;
-    font-size: 14px;
+  > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    span {
+      background: ${props => props.theme.colors.pink};
+      border-radius: 9999px;
+      padding: 8px 16px;
+      color: #FFF;
+      font-weight: 500;
+      font-size: 14px;
+    }
   }
 
   .mode-button {
     height: 40px;
     padding: 0 18px;
     font-size: 14px;
-    margin-left: auto;
   }
 
   .empty-questions {
@@ -93,13 +99,19 @@ export const RoomTitle = styled.div`
   }
 
   @media (max-width: 768px) {
+    display: block;
+
     h1 {
       font-size: 18px;
     }
 
-    span {
-      margin-left: 12px;
-      font-size: 12px;
+    > div {
+      margin-top: 10px;
+      margin-left: 0px;
+
+      span {
+        font-size: 12px;
+      }
     }
 
     .mode-button {
